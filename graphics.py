@@ -20,7 +20,7 @@ class Window():
             self.redraw()
         print("Window closed...")
 
-    def draw_line(self, line, fill_color):
+    def draw_line(self, line, fill_color="black"):
         line.draw(self.__canvas, fill_color)
 
     def close(self):
@@ -42,23 +42,3 @@ class Line():
         canvas.create_line(
             self.p1.x, self.p1.y, self.p2.x, self.p2.y, fill=fill_color, width=2
         )
-
-class Cell():
-    def __init__(self, x1, y1, x2, y2, win, walls=[True, True, True, True]):
-        self._x1 = x1
-        self._y1 = y1
-        self._x2 = x2
-        self._y2 = y2
-        self._win = win
-        self.walls = walls
-
-    def draw(self):
-        # Top, Right, Bottom, Left
-        if self.walls[0]:
-            self._win.draw_line(Line(Point(self._x1, self._y1), Point(self._x2, self._y1)), "black")
-        if self.walls[1]:
-            self._win.draw_line(Line(Point(self._x2, self._y1), Point(self._x2, self._y2)), "black")
-        if self.walls[2]:
-            self._win.draw_line(Line(Point(self._x2, self._y2), Point(self._x1, self._y2)), "black")
-        if self.walls[3]:
-            self._win.draw_line(Line(Point(self._x1, self._y2), Point(self._x1, self._y1)), "black")

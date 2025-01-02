@@ -1,4 +1,5 @@
-from graphics import Window, Point, Line, Cell
+from graphics import Window
+from cell import Cell
 
 
 def main():
@@ -13,13 +14,24 @@ def main():
     # win.draw_line(l1, "red")
     # win.draw_line(l2, "green")
 
-    cell = Cell(100, 100, 200, 200, win, [True, True, False, True])
-    cell2 = Cell(200, 100, 300, 200, win, [True, False, False, True])
-    cell3 = Cell(300, 100, 400, 200, win, [False, True, True, False])
+    c = Cell(win)
+    c.has_top_wall = False
+    c.draw(100, 100, 200, 200)
 
-    cell.draw()
-    cell2.draw()
-    cell3.draw()
+    c2 = Cell(win)
+    c2.has_right_wall = False
+    c2.draw(200, 100, 300, 200)
+
+    c3 = Cell(win)
+    c3.has_bottom_wall = False
+    c3.draw(100, 200, 200, 300)
+
+    c4 = Cell(win)
+    c4.has_left_wall = False
+    c4.draw(100, 100, 200, 200)
+
+    c2.draw_move(c)
+    c3.draw_move(c4, True)
 
     win.wait_for_close()
 
